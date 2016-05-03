@@ -5,7 +5,6 @@ var User = require('../model/User');
 var Tag = require('../model/Tag');
 var UserTag = require('../model/UserTag');
 
-var redis = require('../libs/redis');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {

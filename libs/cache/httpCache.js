@@ -4,7 +4,7 @@
 
 'use strict';
 
-import {httpCache as config} from '../bin/config';
+import {httpCache as config} from '../../bin/config';
 
 import redis from 'redis';
 var client = redis.createClient(config);

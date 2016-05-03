@@ -4,7 +4,7 @@
 
 'use strict';
 
-import {redisCache} from '../bin/config';
+import {redisCache} from '../../bin/config';
 import redis from 'redis';
 const client = redis.createClient(redisCache);
 
