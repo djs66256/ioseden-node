@@ -4,21 +4,22 @@
 
 'use strict';
 
-//import redis from '../bin/config';
-//var config = require('../bin/config.js').redis;
-//var redis = require('redis');
-//var client = redis.createClient(config);
-
-//module.exports = client;
+import {redisCache} from '../bin/config';
+import redis from 'redis';
+const client = redis.createClient(redisCache);
 
 
-//client.set('key', 'value', function(err, res) {
+// FOR EXAMPLE:
+//
+// client.set('key', 'value', function(err, res) {
 //    client.expire('key', 3, function(err, res) {
 //        console.log(err);
 //    });
 //    console.log(err);
-//});
+// });
 //
-//client.get('key', function(err, res) {
+// client.get('key', function(err, res) {
 //    console.log(res)
-//});
+// });
+
+export default client;
