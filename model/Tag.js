@@ -1,7 +1,7 @@
-var sequelize = require('./index');
-var Sequelize = sequelize.Sequelize;
+import sequelize from './index';
+const Sequelize = sequelize.Sequelize;
 
-var Tag = sequelize.define('tag', {
+let Tag = sequelize.define('tag', {
     name: Sequelize.STRING,
     createTime: {
         type: Sequelize.DATE,

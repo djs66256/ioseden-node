@@ -1,3 +1,6 @@
+# cache file
+.babel_cache_file
+
 # Logs
 logs
 *.log

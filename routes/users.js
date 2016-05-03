@@ -1,23 +1,22 @@
-var express = require('express');
-var router = express.Router();
-var UserController = require('../controller/UserController');
+'use strict';
+
+import {Return, Success, Fail} from '../libs/return';
+import express from 'express';
+let router = express.Router();
+import UserController from '../controller/UserController';
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
-    UserController.post()
+router.get('/', (req, res, next) => {
+
     res.send('respond with a resource');
 });
 
 router.post('/', function(req, res, next) {
-    console.log(req.body);
-    UserController.create(req.body, function(err) {
-        if (err) {
-            res.send(err.message);
-        }
-        else {
-            res.send("ok");
-        }
-    })
+    UserController.create(req.body).then(() => {
+        res.send(Success());
+    }).catch((err) => {
+        res.send(Fail(err.message));
+    });
 });
 
 module.exports = router;

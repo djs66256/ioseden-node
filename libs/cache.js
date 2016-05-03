@@ -1,12 +1,17 @@
 /**
  * Created by daniel on 16/5/3.
  */
-var config = require('../bin/config.json').httpCache;
-var redis = require('redis');
+
+'use strict';
+
+import config from '../bin/config.json';
+import {httpCache as config} from '../bin/config';
+
+import redis from 'redis';
 var client = redis.createClient(config);
 
 // TODO: cache http
-module.exports = function(config) {
+export function cache() {
 
     return function (req, res, next) {
         next();

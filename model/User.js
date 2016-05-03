@@ -1,10 +1,10 @@
 /**
  * Created by daniel on 16/5/1.
  */
+'use strict';
 
-var Sequelize = require('sequelize');
-var sequelize = require('./index');
-
+import sequelize from './index';
+const Sequelize = sequelize.Sequelize;
 
 var User = sequelize.define('user', {
     id: Sequelize.INTEGER,
@@ -45,4 +45,4 @@ var User = sequelize.define('user', {
     freezeTableName: true
 });
 
-module.exports = User;
+export default User;

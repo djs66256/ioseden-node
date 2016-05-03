@@ -1,16 +1,16 @@
 /**
  * Created by daniel on 16/5/2.
  */
-var sequelize = require('./index');
-var Sequelize = sequelize.Sequelize;
-var User = require('./User');
-var Tag = require('./Tag');
+import sequelize from './index';
+const Sequelize = sequelize.Sequelize;
+import User from './User';
+import Tag from './Tag';
 
-var UserTagType = {
+const UserTagType = {
     TYPE_DEFAULT: 1
 };
 
-var UserTag = sequelize.define("user_tag", {
+let UserTag = sequelize.define("user_tag", {
     type: {
         type:Sequelize.INTEGER(8),
         defaultValue: UserTagType.TYPE_DEFAULT
@@ -67,4 +67,4 @@ Tag.belongsToMany(User, {
 });
 
 
-module.exports = UserTag;
+export default UserTag;

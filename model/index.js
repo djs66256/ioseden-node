@@ -1,13 +1,18 @@
 /**
  * Created by daniel on 16/5/1.
  */
-var Sequelize = require('sequelize');
-var config = require('../bin/config.json').mysql;
+'use strict';
+
+//var Sequelize = require('sequelize');
+import Sequelize from 'sequelize';
+//var config = require('../bin/config.js').mysql;
+import {mysql as config} from '../bin/config';
 
 var sequelize = new Sequelize(config.database, config.user, config.password, {
     host: config.host,
     port: config.port,
     dialect: 'mysql',
+    freezeTableName: true,
 
     pool: {
         max: 5,
@@ -16,4 +21,4 @@ var sequelize = new Sequelize(config.database, config.user, config.password, {
     }
 });
 
-module.exports = sequelize;
+export default sequelize;

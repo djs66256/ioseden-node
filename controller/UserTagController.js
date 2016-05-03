@@ -2,12 +2,14 @@
  * Created by daniel on 16/5/2.
  */
 
-var express = require('express');
-var router = express.Router();
+import express from 'express';
+let router = express.Router();
 
-var Tag = require('../model/Tag');
-var UserTag = require('../model/UserTag');
+import Tag from '../model/Tag';
+import UserTag from '../model/UserTag';
 
-router.get('/', function (req, res, next) {
+class Controller {
 
-});
+}
+
+export default Controller;

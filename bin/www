@@ -4,6 +4,8 @@
  * Module dependencies.
  */
 
+'use strict';
+
 var app = require('../app');
 var debug = require('debug')('ioseden:server');
 var http = require('http');
@@ -87,4 +89,5 @@ function onListening() {
     ? 'pipe ' + addr
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
+  console.log(new Date().getTime());
 }

@@ -2,57 +2,54 @@
  * Created by daniel on 16/5/2.
  */
 
-var User = require('../model/User');
-var crypto = require('crypto');
+import User from '../model/User';
+import crypto from 'crypto';
 
-function md5 (text) {
+function md5(text) {
     return crypto.createHash('md5').update(text).digest('hex');
-};
+}
 
-var Controller = {
-    validatePassword: function(password, callback) {
+function validatePassword(password) {
+    return new Promise(function (resolve, reject) {
         if (password.length >= 6) {
-            callback(null);
+            resolve();
         }
         else {
-            callback(new Error("密码不能小于6位"));
+            reject(new Error("密码不能小于6位"));
         }
-    },
+    });
+}
 
-    create: function(user, callback) {
-        if (user.email && user.password) {
-            this.validatePassword(user.password, function(err) {
-                if (err) {
-                    callback(err);
-                }
-                else {
-                    User.create(user).then(function(data) {
-                        callback(null);
-                    }).error(function(err) {
-                        callback(err);
-                    });
-                }
-            })
-        }
-        else {
-            callback(new Error("用户名或密码为空"));
-        }
-    },
-
-    update: function(user, callback) {
-        if (user.id) {
-            callback(new Error("用户ID为空"));
-        }
-        User.update(user, {
-            where: {
-                id: user.id
+class Controller {
+    
+    create(user) {
+        return new Promise((resolve, reject) => {
+            if (user.email && user.password) {
+                validatePassword(user.password)
+                    .then(() => {
+                        User.create(user).then(resolve).catch(reject(err));
+                    })
+                    .catch(reject);
             }
-        }).then(function(data) {
-            callback(null, data.get());
-        }).error(function(err) {
-            callback(err);
+            else {
+                reject(new Error("用户名或密码为空"));
+            }
         });
     }
-};
 
-module.exports = Controller;
+    update(user) {
+        return new Promise((resolve, reject) => {
+            if (user.id) {
+                return reject(new Error("用户ID为空"));
+            }
+            User.update(user, {
+                where: {
+                    id: user.id
+                }
+            }).then(resolve).catch(reject);
+
+        })
+    }
+}
+
+export default Controller;
