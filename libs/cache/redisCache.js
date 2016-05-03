@@ -4,10 +4,8 @@
 
 'use strict';
 
-import {redisCache} from '../../bin/config';
-import redis from 'redis';
-const client = redis.createClient(redisCache);
-
+import {redisCache as config} from '../../bin/config';
+import Redis from './redis';
 
 // FOR EXAMPLE:
 //
@@ -22,4 +20,4 @@ const client = redis.createClient(redisCache);
 //    console.log(res)
 // });
 
-export default client;
+export default new Redis(config);;
