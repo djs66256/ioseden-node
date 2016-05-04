@@ -13,4 +13,8 @@ let Tag = sequelize.define('tag', {
     freezeTableName: true
 });
 
-module.exports = Tag;
+if (process.env.EDEN_SYNC_DATABASE) {
+    Tag.sync();
+}
+
+export  default Tag;

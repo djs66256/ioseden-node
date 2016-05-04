@@ -3,7 +3,7 @@
  */
 
 // TODO: validate token
-module.exports = function() {
+export default function() {
     return function(req, res, next) {
         next();
     };

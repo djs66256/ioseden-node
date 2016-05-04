@@ -2,6 +2,8 @@
 
 iOS Eden service for restful api.
 
+### 架构简介
+nodejs + express + sequelize + redis
 
 ### 目录结构
 

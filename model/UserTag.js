@@ -11,6 +11,11 @@ const UserTagType = {
 };
 
 let UserTag = sequelize.define("user_tag", {
+    id: {
+        type: Sequelize.INTEGER,
+        autoIncrement: true,
+        primaryKey: true
+    },
     type: {
         type:Sequelize.INTEGER(8),
         defaultValue: UserTagType.TYPE_DEFAULT
@@ -65,6 +70,10 @@ Tag.belongsToMany(User, {
     foreignKey: 'tag_id',
     as: 'users'
 });
+
+if (process.env.EDEN_SYNC_DATABASE) {
+    UserTag.sync();
+}
 
 
 export default UserTag;

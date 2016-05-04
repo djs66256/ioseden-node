@@ -7,13 +7,12 @@ import sequelize from './index';
 const Sequelize = sequelize.Sequelize;
 
 var User = sequelize.define('user', {
-    id: Sequelize.INTEGER,
-    name: Sequelize.STRING,
+   // name: Sequelize.STRING,
     password: {
         type: Sequelize.STRING
     },
     salt: {
-        type: Sequelize.CHAR(8)
+        type: Sequelize.STRING(16)
     },
     nickName: {
         type: Sequelize.STRING,
@@ -42,7 +41,16 @@ var User = sequelize.define('user', {
     }
 }, {
     timestamps: false,
-    freezeTableName: true
+    freezeTableName: true,
+    defaultScope: {
+        attributes: ['nickName','email','birthday','gender','createTime','updateTime']
+    }
 });
+
+User.editableAttribute = ['nickName', 'birthday', 'gender'];
+
+if (process.env.EDEN_SYNC_DATABASE) {
+    User.sync();
+}
 
 export default User;
