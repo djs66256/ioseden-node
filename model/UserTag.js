@@ -25,12 +25,9 @@ let UserTag = sequelize.define("user_tag", {
         field: 'create_time',
         defaultValue: Sequelize.NOW()
     }
-}, {
-    freezeTableName: true,
-    timestamps: false,
 });
 
-UserTag.TYPE_DEFAULT = UserTagType.TYPE_DEFAULT
+UserTag.TYPE_DEFAULT = UserTagType.TYPE_DEFAULT;
 
 UserTag.belongsTo(User, {
     foreignKey: 'user_id',

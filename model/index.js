@@ -12,7 +12,13 @@ var sequelize = new Sequelize(config.database, config.user, config.password, {
     host: config.host,
     port: config.port,
     dialect: 'mysql',
-    freezeTableName: true,
+
+    define: {
+        freezeTableName: true,
+
+        createdAt: 'createTime',
+        updatedAt: 'updateTime'
+    },
 
     pool: {
         max: 5,

@@ -20,4 +20,4 @@ import Redis from './redis';
 //    console.log(res)
 // });
 
-export default new Redis(config);;
+export default new Redis(config);

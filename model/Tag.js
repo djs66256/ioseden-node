@@ -8,9 +8,6 @@ let Tag = sequelize.define('tag', {
         field: 'create_time',
         defaultValue: Sequelize.NOW()
     }
-}, {
-    timestamps: false,
-    freezeTableName: true
 });
 
 if (process.env.EDEN_SYNC_DATABASE) {

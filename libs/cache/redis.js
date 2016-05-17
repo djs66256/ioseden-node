@@ -65,7 +65,17 @@ class Redis {
     get(key) {
         let _client = this._client;
         return new Promise((resolve, reject) => {
-            _client.get(key, (err) => {
+            _client.get(key, (err, data) => {
+                if (err) reject(err);
+                else resolve(data);
+            })
+        })
+    }
+
+    del(key) {
+        let _client = this._client;
+        return new Promise((resolve, reject) => {
+            _client.del(key, err => {
                 if (err) reject(err);
                 else resolve();
             })

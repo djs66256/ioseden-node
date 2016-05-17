@@ -28,8 +28,8 @@ var User = sequelize.define('user', {
     gender: Sequelize.INTEGER(8),
     createTime: {
         type: Sequelize.DATE,
-        defaultValue: Sequelize.NOW(),
-        field: 'nick_name'
+        // defaultValue: Sequelize.NOW(),
+        field: 'create_time'
     },
     updateTime: {
         type: Sequelize.DATE,
@@ -40,10 +40,13 @@ var User = sequelize.define('user', {
         field: 'login_time'
     }
 }, {
-    timestamps: false,
-    freezeTableName: true,
     defaultScope: {
         attributes: ['nickName','email','birthday','gender','createTime','updateTime']
+    },
+    scope: {
+        all: {
+
+        }
     }
 });
 

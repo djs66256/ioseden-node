@@ -2,14 +2,14 @@
  * Created by daniel on 16/5/2.
  */
 
+"use strict";
+
 import express from 'express';
-let router = express.Router();
 
 import Tag from '../model/Tag';
+import User from '../model/User';
 import UserTag from '../model/UserTag';
 
-class Controller {
+export default {
 
 }
-
-export default Controller;

@@ -62,7 +62,7 @@ router.get('/', function(req, res, next) {
         //user.getTags({where:{user_tag:{type:1}}}).then(function(tags) {
         //    console.log(tags);
         //})
-    })
+    });
 
     console.log(__dirname);
     res.render('index', { title: 'Express' });
