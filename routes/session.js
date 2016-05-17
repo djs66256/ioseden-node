@@ -28,8 +28,22 @@ router.post('/', (req, res) => {
 });
 
 router.delete('/', (req, res) => {
-
-
+    let token = req.cookies.token;
+    res.clearCookie('token');
+    if (token) {
+        SessionController.find(token).then(session => {
+            SessionController.delete(token).then(() => {
+                res.send(new Success());
+            }).catch(err => {
+                res.send(new Fail(err.message));
+            });
+        }).catch(err => {
+            res.send(new Fail(err.message));
+        })
+    }
+    else {
+        res.send(new Fail('请先登录'));
+    }
 });
 
 module.exports = router;

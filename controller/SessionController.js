@@ -26,7 +26,9 @@ let Controller = {
     },
 
     find(token) {
-        redisCache.get(token).then(data => {JSON.parse(data)});
+        return redisCache.get(token).then(data => {
+            return new Session(JSON.parse(data));
+        });
     }
 };
 
