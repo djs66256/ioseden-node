@@ -18,12 +18,12 @@ router.post('/', (req, res) => {
         let expireTime = 365*24*3600;
         SessionController.create({uid: user.id, expire: expireTime}).then(session => {
             res.cookie('token', session.token, {domain:'localhost', path:'/', expires:new Date(session.expireDate)});
-            res.send(new Success(user));
+            res.send(Success(user));
         }).catch(err => {
-            res.send(new Fail(err.message));
+            res.send(Fail(err.message));
         });
     }).catch(err => {
-        res.send(new Fail(err.message));
+        res.send(Fail(err.message));
     })
 });
 
@@ -33,16 +33,16 @@ router.delete('/', (req, res) => {
     if (token) {
         SessionController.find(token).then(session => {
             SessionController.delete(token).then(() => {
-                res.send(new Success());
+                res.send(Success());
             }).catch(err => {
-                res.send(new Fail(err.message));
+                res.send(Fail(err.message));
             });
         }).catch(err => {
-            res.send(new Fail(err.message));
+            res.send(Fail(err.message));
         })
     }
     else {
-        res.send(new Fail('请先登录'));
+        res.send(Fail('请先登录'));
     }
 });
 

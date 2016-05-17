@@ -27,6 +27,19 @@ router.get('/:id', (req, res, next) => {
     }
 });
 
+router.get('/', needLogin(), (req, res, next) => {
+    UserController.findByIds([req.userId]).then(users => {
+        if (users.length == 1) {
+            res.send(Success(users[0]));
+        }
+        else {
+            res.send(Fail('用户不存在'));
+        }
+    }).catch(() => {
+        res.send(Fail('用户不存在'));
+    });
+});
+
 router.post('/', (req, res) => {
     UserController.create({
         email: req.body.username,
