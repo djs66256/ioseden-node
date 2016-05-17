@@ -14,7 +14,13 @@ function validatePassword(password) {
 }
 
 function filterValidateKey(from, keys) {
-
+    let obj = {};
+    for (let k of keys) {
+        if (from[k]) {
+            obj[k] = from[k];
+        }
+    }
+    return obj;
 }
 
 export {validatePassword, filterValidateKey};

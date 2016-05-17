@@ -1,6 +1,6 @@
 ## User
 
-* 用户注册 **POST** /user
+* [x]用户注册 **POST** /user
 
 	```json
 	{
@@ -24,7 +24,7 @@
 
 --
 
-* 获取用户信息 **GET** /user(/:id)?
+* [x]获取用户信息 **GET** /user(/:id)?
 
 	id为空的时候为自己的信息
 
@@ -54,7 +54,7 @@
 	}
 	```
 	
-* 修改用户信息 **PUT** /user
+* [x]修改用户信息 **PUT** /user
 
 	```json
 	{
@@ -75,7 +75,7 @@
 
 --
 
-* 登录 **POST** /session
+* [x]登录 **POST** /session
 	
 	```json
 	{
@@ -94,7 +94,7 @@
 	}
 	```
 	
-* 登出 **DELETE** /session
+* [x]登出 **DELETE** /session
 
 	```json
 	{

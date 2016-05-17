@@ -56,13 +56,13 @@ let Controller = {
 
     update(user) {
         return new Promise((resolve, reject) => {
-            if (user.id) {
+            if (!user.id) {
                 return reject(new Error("用户ID为空"));
             }
             if (user.password && user.salt) {
                 return reject(new Error("参数非法"));
             }
-
+            console.log(filterValidateKey(user, User.editableAttribute))
             User.update(filterValidateKey(user, User.editableAttribute), {
                 where: {
                     id: user.id

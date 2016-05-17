@@ -12,7 +12,7 @@ router.get('/:id', (req, res, next) => {
     let id = req.params.id;
     if (id) {
         UserController.findByIds([id]).then((users) => {
-            if (users.length > 0) {
+            if (users.length == 1) {
                 res.send(Success(users[0]));
             }
             else {
@@ -38,6 +38,21 @@ router.get('/', needLogin(), (req, res, next) => {
     }).catch(() => {
         res.send(Fail('用户不存在'));
     });
+});
+
+router.put('/', needLogin(), (req, res) => {
+    if (req.body && Object.keys(req.body).length) {
+        let user = req.body;
+        user.id = req.userId;
+        UserController.update(user).then((data) => {
+            res.send(Success(data));
+        }).catch((err) => {
+            res.send(Fail(err.message));
+        });
+    }
+    else {
+        res.send(Success());
+    }
 });
 
 router.post('/', (req, res) => {
