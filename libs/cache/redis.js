@@ -24,7 +24,7 @@ class Redis {
     // set a hash table
     hset(key, value = {}, {expire=this._expire}) {
         let _client = this._client;
-        let _expire = this.expire;
+        let _expire = this.expire.bind(this);
         return new Promise((resolve, reject) => {
             let arr = [];
             for (let [k, v] of value) {
@@ -51,9 +51,9 @@ class Redis {
         })
     }
 
-    set(key, value, {expire=this.expire}) {
+    set(key, value, {expire=this._expire}) {
         let _client = this._client;
-        let _expire = this.expire;
+        let _expire = this.expire.bind(this);
         return new Promise((resolve, reject) => {
             _client.set(key, value, (err) => {
                 if (err) reject(err);

@@ -5,7 +5,7 @@
 import uuid from 'node-uuid';
     
 class Session {
-    constructor({token, uid, expire}) {
+    constructor({token = null, uid, expire}) {
         if (token) {
             this.token = token;
         }
@@ -13,10 +13,12 @@ class Session {
             this.token = uuid.v4();
         }
         this.uid = uid;
-        this.expire = expire;
+        this.expireDate = new Date().getTime() + expire;
     }
 
     isExpire() {
-        return true;
+        return new Date().getTime() > this.expireDate;
     }
 }
+
+export default Session;

@@ -10,8 +10,10 @@ let Controller = {
     create( { uid, expire=6*30*24*3600 } = {} ) {
         return new Promise((resolve, reject) => {
             if (uid) {
-                let session = new Session({uid, expire});
-                redisCache.set(session.token, JSON.stringify(session), expire).then(resolve).catch(reject);
+                let session = new Session({uid, expire:expire*1000});
+                redisCache.set(session.token, JSON.stringify(session), {expire}).then(() => {
+                    resolve(session)
+                }).catch(reject);
             }
             else {
                 reject('用户不存在');
@@ -24,7 +26,7 @@ let Controller = {
     },
 
     find(token) {
-        return redisCache.get(token).then(data => {JSON.parse(data)});
+        redisCache.get(token).then(data => {JSON.parse(data)});
     }
 };
 

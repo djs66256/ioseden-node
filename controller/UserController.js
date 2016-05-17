@@ -28,12 +28,12 @@ let Controller = {
         return new Promise((resolve, reject) => {
             if (email && password) {
                 validatePassword(password).then(() => {
-                    User.findOne({where: {email: email}}).then((user) => {
+                    User.scope('safe').findOne({where: {email: email}}).then((user) => {
                         if (user) return reject(new Error("您已经注册,请直接登录"));
                         else {
                             let salt = getSalt(email);
                             let encryptedPassword = encryptPassword(password, salt);
-                            User.create({
+                            User.scope('safe').create({
                                 email: email,
                                 password:encryptedPassword,
                                 salt: salt
@@ -73,7 +73,7 @@ let Controller = {
 
     findByIds(ids = []) {
         return new Promise((resolve, reject) => {
-            User.findAll({
+            User.scope('safe').findAll({
                 where: { id: { $in: ids } },
                 include: {
                     model: Tag,
@@ -88,8 +88,10 @@ let Controller = {
             if (username && password) {
                 User.scope('all').findOne({
                     where: { email: username}
-                }).then((user)=> {
+                }).then(user => { return user.toJSON()}).then((user)=> {
                     if (user.password && user.password == encryptPassword(password, user.salt)) {
+                        delete user.password;
+                        delete user.salt;
                         resolve(user);
                     }
                     else {

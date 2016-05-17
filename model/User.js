@@ -40,13 +40,11 @@ var User = sequelize.define('user', {
         field: 'login_time'
     }
 }, {
-    defaultScope: {
-        attributes: ['nickName','email','birthday','gender','createTime','updateTime']
-    },
-    scope: {
-        all: {
-
-        }
+    scopes: {
+        safe: {
+            attributes: ['nickName','email','birthday','gender','createTime','updateTime']
+        },
+        all: { }
     }
 });
 

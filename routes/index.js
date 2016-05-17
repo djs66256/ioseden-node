@@ -48,24 +48,25 @@ router.get('/', function(req, res, next) {
     //    console.log(data)
     //})
 
-    User.findOne({where:{id: 10}}).then(function(user) {
-        Tag.findAll({include:{
-            model: UserTag,
-            as: 'userTags',
-            where: {
-                user_id:user.id,
-                type: UserTag.TYPE_DEFAULT
-            }
-        }}).then(function(tags) {
-            console.log(tags);
-        });
-        //user.getTags({where:{user_tag:{type:1}}}).then(function(tags) {
-        //    console.log(tags);
-        //})
-    });
+    // User.findOne({where:{id: 10}}).then(function(user) {
+    //     Tag.findAll({include:{
+    //         model: UserTag,
+    //         as: 'userTags',
+    //         where: {
+    //             user_id:user.id,
+    //             type: UserTag.TYPE_DEFAULT
+    //         }
+    //     }}).then(function(tags) {
+    //         console.log(tags);
+    //     });
+    //     //user.getTags({where:{user_tag:{type:1}}}).then(function(tags) {
+    //     //    console.log(tags);
+    //     //})
+    // });
 
+    res.cookie('aaaaa', 'bbvbbbbb');
     console.log(__dirname);
-    res.render('index', { title: 'Express' });
+    res.send({hahah:'iowaefoaiw'})
 });
 
 module.exports = router;
