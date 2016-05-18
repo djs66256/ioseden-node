@@ -71,6 +71,40 @@ let Controller = {
         })
     },
 
+    updatePassword({userId, oldPassword, newPassword}) {
+        return new Promise((resolve, reject) => {
+            if (!userId) {
+                reject(new Error('用户不存在'));
+            }
+            else if (oldPassword == newPassword && oldPassword) {
+                reject(new Error('新密码不能与旧密码一样'));
+            }
+            else {
+                User.scope('all').findOne({where: {id: userId}}).then(user => {
+                    if (user) {
+                        let oldEncryptPassword = encryptPassword(oldPassword, user.salt);
+                        if (oldEncryptPassword == user.password) {
+                            validatePassword(newPassword).then(() => {
+                                let newEncryptPassword = encryptPassword(newPassword, user.salt);
+                                User.update({
+                                    password: newEncryptPassword
+                                }, {
+                                    where: {id: userId}
+                                }).then(resolve).catch(reject);
+                            }).catch(reject);
+                        }
+                        else {
+                            reject(new Error('密码错误'));
+                        }
+                    }
+                    else {
+                        reject(new Error('用户不存在'));
+                    }
+                }).catch(reject);
+            }
+        });
+    },
+
     findByIds(ids = []) {
         return new Promise((resolve, reject) => {
             User.scope('safe').findAll({
