@@ -15,5 +15,26 @@ export default {
         return UserTag.findOrCreate({where: {user_id:userId, tag_id:tagId}}).spread((userTag, created) => {
             return userTag;
         });
+    },
+
+    findByUserId(userId) {
+        return new Promise((resolve, reject) => {
+            User.findOne({where: {id: userId}}).then(user => {
+                if (user) {
+                    user.getTags().then(tags => {
+                        let tagObjs = [];
+                        for (let tag of tags) {
+                            let tagObj = tag.toJSON();
+                            delete tagObj.user_tag;
+                            tagObjs.push(tagObj);
+                        }
+                        return tagObjs;
+                    }).then(resolve).catch(reject);
+                }
+                else {
+                    reject('用户不存在');
+                }
+            }).catch(reject);
+        })
     }
 }

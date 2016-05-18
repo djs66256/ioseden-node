@@ -38,5 +38,13 @@ router.post('/user/tags', needLogin(), (req, res) => {
     }
 });
 
+router.get('/user/:id/tags', (req, res) => {
+    UserTagController.findByUserId(req.params.id).then(tags => {
+        res.send(Success(tags));
+    }).catch(err => {
+        res.send(Fail(err.message));
+    })
+});
+
 
 module.exports = router;
