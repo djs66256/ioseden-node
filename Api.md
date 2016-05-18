@@ -123,6 +123,8 @@
 	```
 	
 * [x]关联用户标签 **POST** /user/tags
+	
+	*TODO:* redesign this api!
 
 	```json
 	{
@@ -130,7 +132,7 @@
 	}
 	```
 	
-* 查找用户标签 **GET** /user(/:uid)/tags
+* [x]查找用户标签 **GET** /user(/:uid)/tags
 * 查找用户热门标签 **GET** /user/tags/hot
 
 	```json

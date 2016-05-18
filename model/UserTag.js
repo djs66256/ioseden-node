@@ -52,8 +52,7 @@ Tag.hasMany(UserTag, {
 
 User.belongsToMany(Tag, {
     through: {
-        model: UserTag,
-        unique: false
+        model: UserTag
     },
     foreignKey: 'user_id',
     as: 'tags'
@@ -61,8 +60,7 @@ User.belongsToMany(Tag, {
 
 Tag.belongsToMany(User, {
     through: {
-        model: UserTag,
-        unique: false
+        model: UserTag
     },
     foreignKey: 'tag_id',
     as: 'users'
