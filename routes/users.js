@@ -81,10 +81,4 @@ router.put('/password', needLogin(), (req, res) => {
     })
 });
 
-router.post('/tag', needLogin(), (req, res) => {
-    UserTagController.create({userId: 1, tagIds: [1,2,3]}).then().catch((err) => {
-        res.send(Fail(err.message));
-    })
-});
-
 module.exports = router;

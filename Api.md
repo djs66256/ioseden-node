@@ -122,19 +122,11 @@
 	}
 	```
 	
-* 关联用户标签 **POST** /user/tags
+* [x]关联用户标签 **POST** /user/tags
 
 	```json
 	{
-		id: 2343, // user id
-		tags: [
-			{
-				id: 235454,
-			},
-			{
-				name: 'xxxx'
-			}
-		]
+		tags: [1, 2, 3]
 	}
 	```
 	
