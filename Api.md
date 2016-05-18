@@ -39,7 +39,7 @@
 	}
 	```
 	
-* 修改密码 **PUT** /user/password
+* [x]修改密码 **PUT** /user/password
 	
 	```json
 	{
@@ -104,7 +104,7 @@
 	
 --	
 
-* 创建标签 **POST** /tag
+* [x]创建标签 **POST** /tag
 
 	```json
 	{

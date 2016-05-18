@@ -7,6 +7,19 @@ let Tag = sequelize.define('tag', {
         type: Sequelize.DATE,
         field: 'create_time',
         defaultValue: Sequelize.NOW()
+    },
+    updateTime: {
+        type: Sequelize.DATE,
+        field: 'update_time'
+    }
+}, {
+    defaultScope: {
+        attributes: ['id', 'name']
+    },
+    scopes: {
+        all: {
+            attributes: ['id', 'name', 'createTime', 'updateTime']
+        }
     }
 });
 
