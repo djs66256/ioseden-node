@@ -16,8 +16,8 @@ var sequelize = new Sequelize(config.database, config.user, config.password, {
     define: {
         freezeTableName: true,
 
-        createdAt: 'create_time',
-        updatedAt: 'update_time'
+        createdAt: 'createTime',
+        updatedAt: 'updateTime'
     },
 
     pool: {

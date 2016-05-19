@@ -13,7 +13,7 @@ import FollowController from '../controller/FollowController';
 router.post('/user/followee/:id', needLogin(), (req, res) => {
     let ownerId = req.userId;
     let followeeId = req.params.id;
-    FollowController.follow({from: ownerId, to: followeeId}).then(() => {
+    FollowController.follow({from: ownerId, to: followeeId}).then((data) => {
         res.send(Success());
     }).catch(err => {
         res.send(Fail(err.message));
@@ -23,7 +23,7 @@ router.post('/user/followee/:id', needLogin(), (req, res) => {
 router.delete('/user/followee/:id', needLogin(), (req, res) => {
     let ownerId = req.userId;
     let followeeId = req.params.id;
-    FollowController.deleteFollow({from: ownerId, to: followeeId}).then(() => {
+    FollowController.deleteFollow({from: ownerId, to: followeeId}).then((data) => {
         res.send(Success());
     }).catch(err => {
         res.send(Fail(err.message));

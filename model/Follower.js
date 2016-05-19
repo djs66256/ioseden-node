@@ -12,6 +12,22 @@ let Follower = sequelize.define('follower', {
         autoIncrement: true,
         primaryKey: true
     },
+    owner: {
+        type: Sequelize.INTEGER,
+        field: 'owner_id',
+        references: {
+            model: User,
+            key: 'id'
+        }
+    },
+    follower: {
+        type: Sequelize.INTEGER,
+        field: 'follower_id',
+        references: {
+            model: User,
+            key: 'id'
+        }
+    },
     createTime: {
         type: Sequelize.DATE,
         field: 'create_time'
@@ -20,18 +36,12 @@ let Follower = sequelize.define('follower', {
     updatedAt: false
 });
 
-User.belongsToMany(User, {
-    through: {
-        model: Follower
-    },
+User.hasMany(Follower, {
     foreignKey: 'follower_id',
     as: 'follower'
 });
 
-User.belongsToMany(User, {
-    through: {
-        model: Follower
-    },
+User.hasMany(Follower, {
     foreignKey: 'owner_id',
     as: 'owner'
 });

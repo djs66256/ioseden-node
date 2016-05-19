@@ -9,8 +9,8 @@ import UserTagController from '../controller/UserTagController'
 import SessionController from '../controller/SessionController'
 
 /* GET users listing. */
-router.get('/:id', (req, res, next) => {
-    let id = req.params.id;
+router.get(/\/(\d+)/, (req, res, next) => {
+    let id = req.params[0];
     if (id) {
         UserController.findByIds([id]).then((users) => {
             if (users.length == 1) {
